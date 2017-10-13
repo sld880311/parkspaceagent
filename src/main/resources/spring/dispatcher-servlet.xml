@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans default-autowire="byName" xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+    xmlns:task="http://www.springframework.org/schema/task"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-4.3.xsd
+           http://www.springframework.org/schema/tx
+           http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+           http://www.springframework.org/schema/mvc
+           http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+           http://www.springframework.org/schema/task
+     	   http://www.springframework.org/schema/task/spring-task-4.3.xsd
+           ">
+
+	
+	<!-- 读入配置属性文件 -->
+	<context:property-placeholder location="classpath:config/*.properties" />
+	
+    <context:component-scan base-package="com.parkspace" />
+    <aop:aspectj-autoproxy />
+    
+	<!-- 错误处理 -->
+    <bean id="RestServiceExceptionHandler"
+		class="com.parkspace.common.exception.RestServiceExceptionHandler">
+		<property name="order" value="1" />
+		<property name="errorResolver">
+			<bean class="com.parkspace.common.exception.DefaultRestErrorResolver" />
+		</property>
+	</bean>
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+        <property name="useSuffixPatternMatch" value="false" />
+    </bean>
+    
+    <mvc:annotation-driven />
+    
+    <!-- 配置定时任务 -->
+    <task:executor id="executor" pool-size="5" />  
+	<task:scheduler id="scheduler" pool-size="10" />  
+	<task:annotation-driven executor="executor" scheduler="scheduler" />
+    
+    <import resource="classpath:spring/spring-mybatis.xml"/>
+    <import resource="classpath:spring/spring-service.xml"/>
+    
+    
+</beans>
