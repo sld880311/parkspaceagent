@@ -7,31 +7,6 @@
         <setting name="logImpl" value="STDOUT_LOGGING" />
         <!-- <setting name="logImpl" value="SLF4J" /> -->
     </settings>
-	<typeAliases>
-		<typeAlias alias="Community" type="com.parkspace.db.rmdb.entity.Community"/>
-		<typeAlias alias="Zone" type="com.parkspace.db.rmdb.entity.Zone"/>
-		<typeAlias alias="ParkingSpace" type="com.parkspace.db.rmdb.entity.ParkingSpace"/>
-		<typeAlias alias="PropertyMgmtUser" type="com.parkspace.db.rmdb.entity.PropertyMgmtUser"/>
-		<typeAlias alias="BlackList" type="com.parkspace.db.rmdb.entity.BlackList"/>
-		<typeAlias alias="SpaceOwner" type="com.parkspace.db.rmdb.entity.SpaceOwner"/>
-		<typeAlias alias="ShareConfig" type="com.parkspace.db.rmdb.entity.ShareConfig"/>
-		<typeAlias alias="Caruser" type="com.parkspace.db.rmdb.entity.Caruser"/>
-		<typeAlias alias="ParkingSpaceBill" type="com.parkspace.db.rmdb.entity.ParkingSpaceBill"/>
-		<typeAlias alias="ParkingSpaceBillHis" type="com.parkspace.db.rmdb.entity.ParkingSpaceBillHis"/>
-		<typeAlias alias="BaseUser" type="com.parkspace.db.rmdb.entity.BaseUser"/>
-		<typeAlias alias="Bill" type="com.parkspace.db.rmdb.entity.Bill"/>
-		<typeAlias alias="Wallet" type="com.parkspace.db.rmdb.entity.Wallet"/>
-		<typeAlias alias="Integral" type="com.parkspace.db.rmdb.entity.Integral"/>
-		<typeAlias alias="SMSCode" type="com.parkspace.db.rmdb.entity.SMSCode"/>
-		<typeAlias alias="WalletLock" type="com.parkspace.db.rmdb.entity.WalletLock"/>
-		<typeAlias alias="WalletOperation" type="com.parkspace.db.rmdb.entity.WalletOperation"/>
-		<typeAlias alias="Message" type="com.parkspace.db.rmdb.entity.Message"/>
-		<typeAlias alias="ReportCommonModel" type="com.parkspace.model.ReportCommonModel"/>
-		<typeAlias alias="PrivilegeTicket" type="com.parkspace.db.rmdb.entity.PrivilegeTicket"/>
-		<typeAlias alias="ChargeRule" type="com.parkspace.db.rmdb.entity.ChargeRule"/>
-		<typeAlias alias="SpaceApply" type="com.parkspace.db.rmdb.entity.SpaceApply"/>
-		
-	</typeAliases>
  	<plugins>
 	 	<plugin interceptor="com.github.pagehelper.PageInterceptor">
 	 		<property name="helperDialect" value="mysql"/>

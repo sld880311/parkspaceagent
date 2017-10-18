@@ -190,16 +190,16 @@ alter table Baseuser
 create table Bill
 (
    billId               varchar(64) not null comment '账单ID',
-   payer                varchar(64) not null comment '付款人',
-   payee                varchar(64) not null comment '收款人',
-   transdate            date not null comment '交易日期',
-   transtime            timestamp not null comment '交易时间',
-   billType             int(1) not null comment '账单类型 0：充值 1：提现  2：交押金  3：提取押金4：分配	5：入账	6：出账',
-   amount               decimal(15, 2) not null comment '账单金额',
-   state                int(1) not null default 0 comment '0: 正常  1：失败	2：对账异常',
+   userId               varchar(64) comment '用户id',
+   oppUserId            varchar(64) comment '对方账户',
+   transdate            date comment '交易日期',
+   transtime            timestamp comment '交易时间',
+   billType             int(1) comment '账单类型 0：充值 1：提现  2：交押金  3：提取押金4：分配	5：入账	6：出账',
+   amount               decimal(15, 2) comment '账单金额',
+   state                int(1) default 0 comment '0: 正常  1：失败	2：对账异常',
    orderJnlNo           varchar(64) comment '订单号',
    remoteJnlNo          varchar(64) comment '远端流水号',
-   payChannel           int(1) comment '付款渠道'
+   ticketAmt            decimal(15,2) comment '优惠金额'
 );
 
 alter table Bill comment '账单（Bill）
@@ -396,7 +396,10 @@ create table ParkingSpaceBill
    budgetPrice          decimal(15,2) not null comment '预算：=单价*停车时长',
    createTime           datetime not null comment '创建时间',
    lastPayTime          datetime comment '上次结算时间:24小时结算一次，并且记录该时间，同时更新结算金额',
-   payedMoney           decimal(15,2) not null default 0 comment '已结算金额：截至目前一共结算的金额'
+   payedMoney           decimal(15,2) not null default 0 comment '已结算金额：截至目前一共结算的金额',
+   isGrantSuccess       int(2) comment '是否授权成功：系统定时执行，如果授权成功表示开通临时权限，1成功，0不成功',
+   comid                varchar(64) comment '小区ID',
+   tryGrantCount        int(10) not null default 0 comment '授权次数：调用socket授权的次数，用来限制最大使用数,默认为0'
 );
 
 alter table ParkingSpaceBill comment '车位订单，用来记录车位的订单信息
@@ -605,10 +608,9 @@ alter table UserCommunity
 create table Wallet
 (
    userId               varchar(64) comment '用户id',
-   pledge               decimal(15,2) comment '押金',
-   balance              decimal(15,2) comment '余额',
-   bonus                decimal(15,2) comment '奖金',
-   unclosedAmt          decimal(15, 2) comment '待结算金额',
+   pledge               decimal(15,2) default 0.0 comment '押金',
+   balance              decimal(15,2) default 0.0 comment '余额',
+   bonus                decimal(15,2) default 0.0 comment '奖金',
    lastTrsTime          timestamp comment '上次交易时间',
    openTime             timestamp comment '开通时间'
 );

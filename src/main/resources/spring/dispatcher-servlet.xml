@@ -26,13 +26,13 @@
     <aop:aspectj-autoproxy />
     
 	<!-- 错误处理 -->
-    <bean id="RestServiceExceptionHandler"
+<!--     <bean id="RestServiceExceptionHandler"
 		class="com.parkspace.common.exception.RestServiceExceptionHandler">
 		<property name="order" value="1" />
 		<property name="errorResolver">
 			<bean class="com.parkspace.common.exception.DefaultRestErrorResolver" />
 		</property>
-	</bean>
+	</bean> -->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
         <property name="useSuffixPatternMatch" value="false" />
     </bean>

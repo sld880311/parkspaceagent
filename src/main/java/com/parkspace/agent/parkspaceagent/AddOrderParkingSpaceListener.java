@@ -60,7 +60,6 @@ public class AddOrderParkingSpaceListener implements Emitter.Listener{
                  if("false".equalsIgnoreCase(data1)) {
                 	 
                  }
-                 
 			}
         });		
 	}
